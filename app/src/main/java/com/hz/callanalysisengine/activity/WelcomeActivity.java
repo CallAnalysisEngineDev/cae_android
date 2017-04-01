@@ -15,7 +15,7 @@ import android.widget.ImageView;
 import com.hz.callanalysisengine.R;
 import com.hz.callanalysisengine.util.ActivityUtil;
 
-public class WelcomeActivity extends Activity {
+public class WelcomeActivity extends AppCompatActivity {
 
     private Handler handler = new Handler(){
         public void handleMessage(Message msg){
