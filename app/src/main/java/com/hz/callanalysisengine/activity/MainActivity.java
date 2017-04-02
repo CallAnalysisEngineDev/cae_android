@@ -8,7 +8,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.hz.callanalysisengine.R;
-import com.hz.callanalysisengine.util.ToastUtil;
+import com.hz.callanalysisengine.util.ActivityUtil;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
             switch (menuItem.getItemId()) {
                 case R.id.action_search:
                     Log.v("hz","搜索");
-                    ToastUtil.showToast(MainActivity.this,"跳入搜索界面");
+                    ActivityUtil.startActivity(MainActivity.this,SearchActivity.class,false);
                     break;
             }
             return true;
@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setToolbar() {
-        toolbar = (Toolbar) findViewById(R.id.toolBar);
+        toolbar = (Toolbar) findViewById(R.id.main_toolBar);
         toolbar.setLogo(R.mipmap.ic_launcher);
         setSupportActionBar(toolbar);
         toolbar.setOnMenuItemClickListener(onMenuItemClick);
@@ -49,4 +49,8 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        return super.onOptionsItemSelected(item);
+    }
 }

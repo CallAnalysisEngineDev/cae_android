@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp">
+
+        <ImageView
+            android:id="@+id/iv_call_img"
+            android:layout_width="110dp"
+            android:layout_height="110dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:src="@mipmap/ic_launcher"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_call_name"
+            android:text="歌曲名称"
+            android:textColor="#000"
+            android:textSize="20sp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+             />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_call_singer"
+            android:text="歌手"
+            android:textSize="15sp"
+            android:textColor="@android:color/darker_gray"
+            android:layout_alignParentBottom="true"
+            android:layout_alignLeft="@+id/tv_call_name"
+            android:layout_alignStart="@+id/tv_call_name"
+            android:layout_marginBottom="10dp"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_call_id"
+            android:text="版本号"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="15sp"
+            android:layout_alignTop="@+id/tv_call_singer"
+            android:layout_toRightOf="@+id/tv_call_name"
+            android:layout_toEndOf="@+id/tv_call_name"
+            android:layout_marginLeft="50dp"
+            android:layout_marginStart="50dp" />
+    </RelativeLayout>
+
+</LinearLayout>
