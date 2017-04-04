@@ -20,17 +20,18 @@
             android:id="@+id/tv_call_name"
             android:text="歌曲名称"
             android:textColor="#000"
-            android:textSize="20sp"
+            android:textSize="15sp"
             android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-             />
+            android:layout_toRightOf="@+id/iv_call_img"
+            android:layout_toEndOf="@+id/iv_call_img"
+            android:layout_marginTop="10dp"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/tv_call_singer"
             android:text="歌手"
-            android:textSize="15sp"
+            android:textSize="12sp"
             android:textColor="@android:color/darker_gray"
             android:layout_alignParentBottom="true"
             android:layout_alignLeft="@+id/tv_call_name"
@@ -43,12 +44,11 @@
             android:id="@+id/tv_call_id"
             android:text="版本号"
             android:textColor="@android:color/darker_gray"
-            android:textSize="15sp"
+            android:textSize="12sp"
+            android:layout_marginRight="10dp"
             android:layout_alignTop="@+id/tv_call_singer"
-            android:layout_toRightOf="@+id/tv_call_name"
-            android:layout_toEndOf="@+id/tv_call_name"
-            android:layout_marginLeft="50dp"
-            android:layout_marginStart="50dp" />
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
     </RelativeLayout>
 
 </LinearLayout>

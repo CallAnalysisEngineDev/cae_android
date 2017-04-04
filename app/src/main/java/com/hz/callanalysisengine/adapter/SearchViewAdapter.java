@@ -1,18 +1,18 @@
 package com.hz.callanalysisengine.adapter;
 
 import android.content.Context;
-import android.support.v7.widget.SearchView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
 import com.hz.callanalysisengine.R;
-import com.hz.callanalysisengine.bean.SearchItem;
+import com.hz.callanalysisengine.bean.SearchItemBean;
+import com.hz.callanalysisengine.constant.Constant;
 import com.hz.callanalysisengine.holder.SearchViewHolder;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
-import java.util.zip.Inflater;
 
 /**
  * Created by kotori on 2017/4/2.
@@ -20,11 +20,11 @@ import java.util.zip.Inflater;
  */
 public class SearchViewAdapter extends BaseAdapter{
 
-    private List<SearchItem> mList;
+    private List<SearchItemBean.ResultListBean> mList;
     private Context mContext;
     private LayoutInflater mInflater;
 
-    public SearchViewAdapter(Context context, List<SearchItem> list) {
+    public SearchViewAdapter(Context context, List<SearchItemBean.ResultListBean> list) {
         mList = list;
         mContext = context;
         mInflater = LayoutInflater.from(context);
@@ -56,10 +56,13 @@ public class SearchViewAdapter extends BaseAdapter{
         else{
             viewHolder = (SearchViewHolder) convertView.getTag();
         }
-        viewHolder.iv_call_img.setImageResource(R.mipmap.ic_launcher);
-        viewHolder.tv_call_name.setText(mList.get(position).getCallName());
-        viewHolder.tv_call_singer.setText(mList.get(position).getSinger());
-        viewHolder.tv_call_id.setText(mList.get(position).getCallID());
+
+        Picasso.with(mContext)
+                .load(Constant.IMG_URL+mList.get(position).getSong().getSongCover())
+                .into(viewHolder.iv_call_img);
+        viewHolder.tv_call_name.setText(mList.get(position).getSong().getSongName());
+        viewHolder.tv_call_singer.setText(mList.get(position).getSong().getSongOwner());
+        viewHolder.tv_call_id.setText(mList.get(position).getCallVersion()+"");
         return convertView;
     }
 }
