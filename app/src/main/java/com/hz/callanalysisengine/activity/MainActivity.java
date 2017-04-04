@@ -37,7 +37,6 @@ public class MainActivity extends AppCompatActivity {
 
     private void setToolbar() {
         toolbar = (Toolbar) findViewById(R.id.main_toolBar);
-        toolbar.setLogo(R.mipmap.ic_launcher);
         setSupportActionBar(toolbar);
         toolbar.setOnMenuItemClickListener(onMenuItemClick);
     }

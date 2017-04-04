@@ -11,7 +11,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="#2e31f9">
+        android:background="#40C4FF">
 
         <android.support.v7.widget.SearchView
             android:layout_width="match_parent"

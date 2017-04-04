@@ -7,6 +7,8 @@ package com.hz.callanalysisengine.constant;
 public class Constant {
     // 首页访问url
     public static String BASE_URL = "http://www.liuyang-anime.cn/cae/call/";
-    // 详情url
+    // 图片url
     public static String IMG_URL = "http://www.liuyang-anime.cn/cae/resource/img";
+    // Call表url
+    public static String AQOURS_HTML_URL = "http://www.liuyang-anime.cn/cae/resource/html/aqours/";
 }

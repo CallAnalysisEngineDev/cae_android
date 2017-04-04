@@ -5,18 +5,28 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 
 import com.hz.callanalysisengine.Fragment.CallMainFragment;
 import com.hz.callanalysisengine.Fragment.CallMessageFragment;
 import com.hz.callanalysisengine.R;
 import com.hz.callanalysisengine.adapter.TabsAdapter;
+import com.hz.callanalysisengine.bean.CallMessageBean;
+import com.hz.callanalysisengine.constant.Constant;
+import com.hz.callanalysisengine.interfaces.ICallRetrofit;
+import com.hz.callanalysisengine.util.RetrofitUtil;
 import com.ogaclejapan.smarttablayout.SmartTabLayout;
 import com.ogaclejapan.smarttablayout.utils.v4.FragmentPagerItemAdapter;
 import com.ogaclejapan.smarttablayout.utils.v4.FragmentPagerItems;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
 
 public class CallActivity extends AppCompatActivity {
 
@@ -29,14 +39,17 @@ public class CallActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_call);
-        initview();
+        initView();
         initPager();
     }
 
-    private void initview() {
+
+
+
+    // 初始化控件
+    private void initView() {
         mViewPager = (ViewPager) findViewById(R.id.vp_call);
         toolbar = (Toolbar) findViewById(R.id.main_toolBar);
-        toolbar.setLogo(R.mipmap.ic_launcher);
         setSupportActionBar(toolbar);
     }
 

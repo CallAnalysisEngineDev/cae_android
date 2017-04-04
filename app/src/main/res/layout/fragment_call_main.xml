@@ -3,11 +3,11 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="call表html界面"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
+    <WebView
+        android:id="@+id/wbv_call_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </WebView>
 
 </RelativeLayout>

@@ -10,7 +10,7 @@
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/main_toolBar"
-        android:background="#2e31f9"
+        android:background="#40C4FF"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         app:title="Caller"

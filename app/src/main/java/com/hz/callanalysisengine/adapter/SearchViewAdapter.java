@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.TextView;
 
 import com.hz.callanalysisengine.R;
 import com.hz.callanalysisengine.bean.SearchItemBean;
@@ -18,11 +19,12 @@ import java.util.List;
  * Created by kotori on 2017/4/2.
  * 装载搜索信息的adapter
  */
-public class SearchViewAdapter extends BaseAdapter{
+public class SearchViewAdapter extends BaseAdapter {
 
     private List<SearchItemBean.ResultListBean> mList;
     private Context mContext;
     private LayoutInflater mInflater;
+    private boolean mTrue;
 
     public SearchViewAdapter(Context context, List<SearchItemBean.ResultListBean> list) {
         mList = list;
@@ -48,21 +50,22 @@ public class SearchViewAdapter extends BaseAdapter{
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         SearchViewHolder viewHolder = null;
-        if(convertView == null) {
-            convertView = mInflater.inflate(R.layout.item_search_view,parent,false);
+        if (convertView == null) {
+            convertView = mInflater.inflate(R.layout.item_search_view, parent, false);
             viewHolder = new SearchViewHolder(convertView);
             convertView.setTag(viewHolder);
-        }
-        else{
+        } else {
             viewHolder = (SearchViewHolder) convertView.getTag();
         }
 
         Picasso.with(mContext)
-                .load(Constant.IMG_URL+mList.get(position).getSong().getSongCover())
+                .load(Constant.IMG_URL + mList.get(position).getSongCover())
                 .into(viewHolder.iv_call_img);
-        viewHolder.tv_call_name.setText(mList.get(position).getSong().getSongName());
-        viewHolder.tv_call_singer.setText(mList.get(position).getSong().getSongOwner());
-        viewHolder.tv_call_id.setText(mList.get(position).getCallVersion()+"");
+        viewHolder.tv_call_name.setText(mList.get(position).getSongName());
+        viewHolder.tv_call_singer.setText(mList.get(position).getSongOwner());
         return convertView;
     }
+
+
 }
+

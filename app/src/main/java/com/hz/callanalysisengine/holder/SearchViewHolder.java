@@ -19,9 +19,9 @@ public class SearchViewHolder {
 
 
     public SearchViewHolder(View itemView) {
-        iv_call_img = (ImageView) itemView.findViewById(R.id.iv_call_img);
+        iv_call_img = (ImageView) itemView.findViewById(R.id.iv_call_message_img);
         tv_call_name = (TextView) itemView.findViewById(R.id.tv_call_name);
         tv_call_singer = (TextView) itemView.findViewById(R.id.tv_call_singer);
-        tv_call_id = (TextView) itemView.findViewById(R.id.tv_call_id);
+//        tv_call_id = (TextView) itemView.findViewById(R.id.tv_call_id);
     }
 }
