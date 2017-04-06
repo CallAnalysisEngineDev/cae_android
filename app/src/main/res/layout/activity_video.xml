@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.hz.callanalysisengine.activity.VideoActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/main_toolBar"
+        android:background="#40C4FF"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        app:title="Caller"
+        >
+
+    </android.support.v7.widget.Toolbar>
+
+    <WebView
+        android:id="@+id/wbv_video"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </WebView>
+
+</LinearLayout>

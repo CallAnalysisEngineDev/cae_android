@@ -11,4 +11,6 @@ public class Constant {
     public static String IMG_URL = "http://www.liuyang-anime.cn/cae/resource/img";
     // Call表url
     public static String AQOURS_HTML_URL = "http://www.liuyang-anime.cn/cae/resource/html/aqours/";
+    // b站call表url
+    public static String BILIBILI_URL = "http://m.bilibili.com/video/av5735255.html#page=";
 }

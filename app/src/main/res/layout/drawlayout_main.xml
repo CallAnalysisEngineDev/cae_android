@@ -8,16 +8,69 @@
     android:background="@mipmap/call_bac"
     tools:context="com.hz.callanalysisengine.activity.MainActivity">
 
-    <GridView
-        android:id="@+id/gv_main_item"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="20dp"
-        android:numColumns="3">
+        android:layout_height="match_parent"
+        android:scrollbars="vertical">
 
-    </GridView>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <GridView
+                android:id="@+id/gv_main_item"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="20dp"
+                android:numColumns="3">
+
+            </GridView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="热歌排行"
+                android:textSize="20dp"
+                android:textColor="#f00"
+                android:layout_marginTop="30dp"
+                android:layout_marginLeft="20dp"/>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_main_hot"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="10dp">
+
+            </android.support.v7.widget.RecyclerView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="最近更新"
+                android:textSize="20dp"
+                android:textColor="#f00"
+                android:layout_marginTop="30dp"
+                android:layout_marginLeft="20dp"/>
+
+            <GridView
+                android:id="@+id/gv_main_new"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:numColumns="2">
+
+            </GridView>
+        </LinearLayout>
+    </ScrollView>
+
+
 
     <FrameLayout
         android:id="@+id/fl_main"

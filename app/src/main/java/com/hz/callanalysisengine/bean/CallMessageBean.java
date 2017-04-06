@@ -95,6 +95,15 @@ public class CallMessageBean {
             private Object songCreateTime;
             private String songLastModifyTime;
             private Object songClick;
+            private String songVideo;
+
+            public String getSongVideo() {
+                return songVideo;
+            }
+
+            public void setSongVideo(String songVideo) {
+                this.songVideo = songVideo;
+            }
 
             public String getSongId() {
                 return songId;

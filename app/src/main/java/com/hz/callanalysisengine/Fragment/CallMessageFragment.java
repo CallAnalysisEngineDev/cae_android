@@ -1,5 +1,6 @@
 package com.hz.callanalysisengine.Fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -9,9 +10,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.hz.callanalysisengine.activity.VideoActivity;
 import com.hz.callanalysisengine.bean.CallMessageBean;
 import com.hz.callanalysisengine.constant.Constant;
 import com.hz.callanalysisengine.interfaces.ICallRetrofit;
@@ -36,6 +39,8 @@ public class CallMessageFragment extends Fragment{
     private TextView saleTime;
     private TextView updateTime;
     private ImageView callImg;
+    private Button mVideoBtn;
+    private String videoUrl;
 
 
     private Handler handler = new Handler(){
@@ -54,8 +59,11 @@ public class CallMessageFragment extends Fragment{
         View view = inflater.inflate(R.layout.fragment_call_message,container,false);
         initView(view);
         setData();
+        setClick();
         return view;
     }
+
+
 
     // 初始化控件
     private void initView(View view) {
@@ -65,7 +73,21 @@ public class CallMessageFragment extends Fragment{
         saleTime = (TextView) view.findViewById(R.id.tv_call_message_saletime);
         updateTime = (TextView) view.findViewById(R.id.tv_call_message_updatetime);
         callImg = (ImageView) view.findViewById(R.id.iv_call_message_img);
+        mVideoBtn = (Button) view.findViewById(R.id.btn_call_video);
     }
+
+    // 设置监听事件
+    private void setClick() {
+        mVideoBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(),VideoActivity.class);
+                intent.putExtra("video",videoUrl);
+                startActivity(intent);
+            }
+        });
+    }
+
     // 请求数据
     private void setData() {
         Retrofit retrofit = RetrofitUtil.createRetrofit(Constant.BASE_URL);
@@ -102,6 +124,7 @@ public class CallMessageFragment extends Fragment{
             Picasso.with(getActivity())
                     .load(Constant.IMG_URL +callMessage.getResult().getSong().getSongCover())
                     .into(callImg);
+            videoUrl = callMessage.getResult().getSong().getSongVideo();
         }
 
     }

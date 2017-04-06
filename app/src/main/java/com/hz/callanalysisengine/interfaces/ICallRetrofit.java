@@ -8,7 +8,7 @@ import retrofit2.http.Url;
 
 /**
  * Created by kotori on 2017/4/3.
- * 请求搜索的接口
+ * 请求call表详情的接口
  */
 public interface ICallRetrofit {
     @GET()

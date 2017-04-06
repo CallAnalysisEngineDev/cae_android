@@ -40,14 +40,13 @@ public class SearchActivity extends AppCompatActivity {
     private Handler handler = new Handler(){
         public void handleMessage(Message msg){
             switch (msg.what) {
-                case 1:
+                case 1:     // 第一次加载
                     setAdapter();
                     break;
                 case 2:
-
                     ToastUtil.showToast(SearchActivity.this,"~(๑•́ ₃ •̀๑) 找不到您搜索的关键字");
                     break;
-                case 3:
+                case 3:     // 下拉分页加载
                     setMoreAdapter();
                     break;
             }
@@ -61,7 +60,6 @@ public class SearchActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
         init();
-
         setSearchView();
     }
 
@@ -76,7 +74,6 @@ public class SearchActivity extends AppCompatActivity {
         mAdapter = new SearchViewAdapter(this,mSearchMessageList);
         mListView.setAdapter(mAdapter);
     }
-
 
     // 配置初始adapter
     private void setAdapter() {
@@ -114,9 +111,6 @@ public class SearchActivity extends AppCompatActivity {
         });
 
     }
-
-
-
 
     // 设置搜索框并第一次访问后台
     private void setSearchView() {
