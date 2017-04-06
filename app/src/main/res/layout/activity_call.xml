@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         app:title="Caller"
-        app:titleTextColor="#fff">
+        >
 
     </android.support.v7.widget.Toolbar>
 
@@ -26,7 +26,7 @@
         app:stl_indicatorInFront="false"
         app:stl_indicatorInterpolation="smart"
         app:stl_indicatorGravity="bottom"
-        app:stl_indicatorColor="#40C4FF"
+        app:stl_indicatorColor="#ffffff"
         app:stl_indicatorThickness="4dp"
         app:stl_indicatorWidth="auto"
         app:stl_indicatorCornerRadius="2dp"

@@ -9,8 +9,8 @@ import android.view.ViewGroup;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 
-import com.hz.callanalysisengine.R;
 import com.hz.callanalysisengine.constant.Constant;
+import com.hz.callanalysisengine.R;
 
 /**
  * Created by kotori on 2017/4/3.
@@ -36,7 +36,6 @@ public class CallMainFragment extends Fragment{
         settings.setUseWideViewPort(true);
         settings.setLoadWithOverviewMode(true);
         settings.setJavaScriptEnabled(true);
-        settings.setSupportZoom(true);
         settings.setBuiltInZoomControls(true);
     }
 

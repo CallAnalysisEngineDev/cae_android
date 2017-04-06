@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/dl_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/call_bac"
+    tools:context="com.hz.callanalysisengine.activity.MainActivity">
+
+    <GridView
+        android:id="@+id/gv_main_item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="20dp"
+        android:numColumns="3">
+
+    </GridView>
+
+    <FrameLayout
+        android:id="@+id/fl_main"
+        android:layout_width="200dp"
+        android:layout_height="match_parent"
+        android:background="#40C4FF"
+        android:layout_gravity="start">
+
+        <ListView
+            android:id="@+id/lv_side_menu"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            />
+    </FrameLayout>
+
+
+
+
+
+</android.support.v4.widget.DrawerLayout>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/iv_main_item"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        android:src="@mipmap/img_test_you"
+        android:layout_centerHorizontal="true"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="所有歌曲"
+        android:textSize="15dp"
+        android:id="@+id/tv_main_item"
+        android:layout_below="@+id/iv_main_item"
+        android:layout_alignRight="@+id/iv_main_item"
+        android:layout_alignEnd="@+id/iv_main_item" />
+
+
+</RelativeLayout>

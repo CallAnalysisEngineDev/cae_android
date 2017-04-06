@@ -18,7 +18,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".activity.MainActivity" />
-        <activity android:name=".activity.SearchActivity" />
+        <activity android:name=".activity.SearchActivity"
+            android:windowSoftInputMode="adjustPan"/>
         <activity android:name=".activity.CallActivity"></activity>
     </application>
 

@@ -1,7 +1,6 @@
 package com.hz.callanalysisengine.interfaces;
 
 import com.hz.callanalysisengine.bean.CallMessageBean;
-import com.hz.callanalysisengine.bean.SearchItemBean;
 
 import retrofit2.Call;
 import retrofit2.http.GET;

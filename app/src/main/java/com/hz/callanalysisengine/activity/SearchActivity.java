@@ -7,18 +7,17 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.SearchView;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-import com.hz.callanalysisengine.R;
 import com.hz.callanalysisengine.adapter.SearchViewAdapter;
-import com.hz.callanalysisengine.bean.SearchItemBean;
 import com.hz.callanalysisengine.constant.Constant;
 import com.hz.callanalysisengine.interfaces.ISearchRetrofit;
 import com.hz.callanalysisengine.util.RetrofitUtil;
+import com.hz.callanalysisengine.R;
+import com.hz.callanalysisengine.bean.SearchItemBean;
 import com.hz.callanalysisengine.util.ToastUtil;
 
 import java.util.ArrayList;

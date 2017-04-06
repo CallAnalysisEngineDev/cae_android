@@ -12,11 +12,11 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.hz.callanalysisengine.R;
 import com.hz.callanalysisengine.bean.CallMessageBean;
 import com.hz.callanalysisengine.constant.Constant;
 import com.hz.callanalysisengine.interfaces.ICallRetrofit;
 import com.hz.callanalysisengine.util.RetrofitUtil;
+import com.hz.callanalysisengine.R;
 import com.squareup.picasso.Picasso;
 
 import retrofit2.Call;
@@ -93,14 +93,17 @@ public class CallMessageFragment extends Fragment{
 
     // 更新界面
     private void updateView(CallMessageBean callMessage) {
-        updateTime.setText(callMessage.getResult().getSong().getSongLastModifyTime());
-        singer.setText(callMessage.getResult().getSong().getSongOwner());
-        callVersion.setText(callMessage.getResult().getCallVersion()+"");
-        saleTime.setText(callMessage.getResult().getSong().getSongSellTime());
-        songName.setText(callMessage.getResult().getSong().getSongName());
-        Picasso.with(getActivity())
-                .load(Constant.IMG_URL +callMessage.getResult().getSong().getSongCover())
-                .into(callImg);
+        if(callMessage!=null) {
+            updateTime.setText(callMessage.getResult().getSong().getSongLastModifyTime());
+            singer.setText(callMessage.getResult().getSong().getSongOwner());
+            callVersion.setText(callMessage.getResult().getCallVersion()+"");
+            saleTime.setText(callMessage.getResult().getSong().getSongSellTime());
+            songName.setText(callMessage.getResult().getSong().getSongName());
+            Picasso.with(getActivity())
+                    .load(Constant.IMG_URL +callMessage.getResult().getSong().getSongCover())
+                    .into(callImg);
+        }
+
     }
 
 

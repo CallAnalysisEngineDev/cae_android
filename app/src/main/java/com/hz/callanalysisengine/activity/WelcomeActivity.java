@@ -1,6 +1,5 @@
 package com.hz.callanalysisengine.activity;
 
-import android.app.Activity;
 import android.os.Handler;
 import android.os.Message;
 import android.os.SystemClock;
@@ -12,8 +11,8 @@ import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.widget.ImageView;
 
-import com.hz.callanalysisengine.R;
 import com.hz.callanalysisengine.util.ActivityUtil;
+import com.hz.callanalysisengine.R;
 
 public class WelcomeActivity extends AppCompatActivity {
 

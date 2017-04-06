@@ -5,11 +5,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.TextView;
 
+import com.hz.callanalysisengine.constant.Constant;
 import com.hz.callanalysisengine.R;
 import com.hz.callanalysisengine.bean.SearchItemBean;
-import com.hz.callanalysisengine.constant.Constant;
 import com.hz.callanalysisengine.holder.SearchViewHolder;
 import com.squareup.picasso.Picasso;
 
