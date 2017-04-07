@@ -22,7 +22,9 @@
             android:name=".activity.SearchActivity"
             android:windowSoftInputMode="adjustPan" />
         <activity android:name=".activity.CallActivity" />
-        <activity android:name=".activity.VideoActivity"></activity>
+        <activity android:name=".activity.VideoActivity" />
+        <activity android:name=".activity.MineActivity" />
+        <activity android:name=".activity.SettingActivity"></activity>
     </application>
 
 </manifest>

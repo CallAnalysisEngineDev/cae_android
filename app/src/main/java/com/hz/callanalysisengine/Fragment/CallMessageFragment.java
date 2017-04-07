@@ -14,10 +14,12 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.hz.callanalysisengine.activity.CallActivity;
 import com.hz.callanalysisengine.activity.VideoActivity;
 import com.hz.callanalysisengine.bean.CallMessageBean;
 import com.hz.callanalysisengine.constant.Constant;
 import com.hz.callanalysisengine.interfaces.ICallRetrofit;
+import com.hz.callanalysisengine.interfaces.IMessageListener;
 import com.hz.callanalysisengine.util.RetrofitUtil;
 import com.hz.callanalysisengine.R;
 import com.squareup.picasso.Picasso;
@@ -41,6 +43,7 @@ public class CallMessageFragment extends Fragment{
     private ImageView callImg;
     private Button mVideoBtn;
     private String videoUrl;
+    private String htmlUrl;
 
 
     private Handler handler = new Handler(){
@@ -90,27 +93,21 @@ public class CallMessageFragment extends Fragment{
 
     // 请求数据
     private void setData() {
-        Retrofit retrofit = RetrofitUtil.createRetrofit(Constant.BASE_URL);
-        ICallRetrofit callRetrofit = retrofit.create(ICallRetrofit.class);
-        Log.v("hz",Constant.BASE_URL+"detail?song.songId="+getActivity().getIntent().getStringExtra("id"));
-        Call<CallMessageBean> call = callRetrofit.getCallResult("detail?song.songId="+
-                getActivity().getIntent().getStringExtra("id"));
-        call.enqueue(new Callback<CallMessageBean>() {
-            @Override
-            public void onResponse(Call<CallMessageBean> call, Response<CallMessageBean> response) {
-                Log.v("hz","请求成功");
-                CallMessageBean callMessage = response.body();
-                Message msg = new Message();
-                msg.what = 1;
-                msg.obj = callMessage;
-                handler.sendMessage(msg);
-            }
+        new Thread(){
+            public void run(){
+                try {
+                    Thread.sleep(500);
+                    Message msg = new Message();
+                    msg.what = 1;
+                    msg.obj = ((CallActivity)getActivity()).getMessage();
+                    handler.sendMessage(msg);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
 
-            @Override
-            public void onFailure(Call<CallMessageBean> call, Throwable t) {
-                Log.v("hz","请求失败"+t);
             }
-        });
+        }.start();
+
     }
 
     // 更新界面
@@ -125,9 +122,12 @@ public class CallMessageFragment extends Fragment{
                     .load(Constant.IMG_URL +callMessage.getResult().getSong().getSongCover())
                     .into(callImg);
             videoUrl = callMessage.getResult().getSong().getSongVideo();
+            htmlUrl = callMessage.getResult().getCallSource();
         }
 
     }
+
+
 
 
 }

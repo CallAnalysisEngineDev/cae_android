@@ -1,14 +1,19 @@
 package com.hz.callanalysisengine.Fragment;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 
+import com.hz.callanalysisengine.activity.CallActivity;
+import com.hz.callanalysisengine.bean.CallMessageBean;
 import com.hz.callanalysisengine.constant.Constant;
 import com.hz.callanalysisengine.R;
 
@@ -19,6 +24,21 @@ import com.hz.callanalysisengine.R;
 public class CallMainFragment extends Fragment{
 
     private WebView webView;
+    private Handler handler = new Handler(){
+        public void handleMessage(Message msg){
+            switch (msg.what) {
+                case 1 :
+                    updateView((CallMessageBean)msg.obj);
+                    break;
+            }
+        }
+    };
+
+    private void updateView(CallMessageBean callMessage) {
+        String url = Constant.AQOURS_HTML_URL+callMessage.getResult().getCallSource();
+        Log.v("hz",url);
+        webView.loadUrl(url);
+    }
 
     @Nullable
     @Override
@@ -40,8 +60,21 @@ public class CallMainFragment extends Fragment{
     }
 
     private void setData() {
-        webView.loadUrl(Constant.AQOURS_HTML_URL+getActivity()
-                .getIntent().getStringExtra("html")+".html");
+        new Thread(){
+            public void run(){
+                try {
+                    Thread.sleep(500);
+                    Message msg = new Message();
+                    msg.what = 1;
+                    msg.obj = ((CallActivity)getActivity()).getMessage();
+                    handler.sendMessage(msg);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }.start();
+
+
 
     }
 

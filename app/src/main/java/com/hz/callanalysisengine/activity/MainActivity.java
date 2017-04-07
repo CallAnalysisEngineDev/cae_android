@@ -186,10 +186,10 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 switch ((int) id) {
                     case 0 :
-                        ToastUtil.showToast(MainActivity.this,"关于我们");
+                        ActivityUtil.startActivity(MainActivity.this,MineActivity.class,false);
                         break;
                     case 1 :
-                        ToastUtil.showToast(MainActivity.this,"设置");
+                        ActivityUtil.startActivity(MainActivity.this,SettingActivity.class,false);
                         break;
                 }
             }
