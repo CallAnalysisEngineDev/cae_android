@@ -13,7 +13,6 @@ import com.hz.callanalysisengine.R;
 import com.hz.callanalysisengine.bean.CallMessageBean;
 import com.hz.callanalysisengine.constant.Constant;
 import com.hz.callanalysisengine.interfaces.ICallRetrofit;
-import com.hz.callanalysisengine.interfaces.IMessageListener;
 import com.hz.callanalysisengine.util.RetrofitUtil;
 import com.ogaclejapan.smarttablayout.SmartTabLayout;
 import com.ogaclejapan.smarttablayout.utils.v4.FragmentPagerItemAdapter;
@@ -29,7 +28,6 @@ import retrofit2.Retrofit;
 
 public class CallActivity extends FragmentActivity {
 
-    private IMessageListener mListener;
     private ViewPager mViewPager;
     private CallMessageBean mCallMessageBean;
 

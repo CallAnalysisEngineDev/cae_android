@@ -1,6 +1,7 @@
 package com.hz.callanalysisengine.Fragment;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -22,6 +23,7 @@ import com.hz.callanalysisengine.interfaces.ICallRetrofit;
 import com.hz.callanalysisengine.interfaces.IMessageListener;
 import com.hz.callanalysisengine.util.RetrofitUtil;
 import com.hz.callanalysisengine.R;
+import com.hz.callanalysisengine.util.ToastUtil;
 import com.squareup.picasso.Picasso;
 
 import retrofit2.Call;
@@ -62,7 +64,6 @@ public class CallMessageFragment extends Fragment{
         View view = inflater.inflate(R.layout.fragment_call_message,container,false);
         initView(view);
         setData();
-        setClick();
         return view;
     }
 
@@ -81,30 +82,34 @@ public class CallMessageFragment extends Fragment{
 
     // 设置监听事件
     private void setClick() {
-        mVideoBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(),VideoActivity.class);
-                intent.putExtra("video",videoUrl);
-                startActivity(intent);
-            }
-        });
+
+
+            mVideoBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(getActivity(),VideoActivity.class);
+                    intent.putExtra("video",videoUrl);
+                    startActivity(intent);
+                }
+            });
+
+
     }
 
     // 请求数据
     private void setData() {
         new Thread(){
             public void run(){
-                try {
-                    Thread.sleep(500);
+
+                while (true){
+                    if (((CallActivity) getActivity()).getMessage()!=null) {
+                        break;
+                    }
+                }
                     Message msg = new Message();
                     msg.what = 1;
                     msg.obj = ((CallActivity)getActivity()).getMessage();
                     handler.sendMessage(msg);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-
             }
         }.start();
 
@@ -121,8 +126,20 @@ public class CallMessageFragment extends Fragment{
             Picasso.with(getActivity())
                     .load(Constant.IMG_URL +callMessage.getResult().getSong().getSongCover())
                     .into(callImg);
-            videoUrl = callMessage.getResult().getSong().getSongVideo();
             htmlUrl = callMessage.getResult().getCallSource();
+            videoUrl = callMessage.getResult().getSong().getSongVideo();
+            if(Integer.valueOf(videoUrl)==0){                   // 做视频是否存在的判断
+                mVideoBtn.setBackgroundColor(Color.GRAY);
+                mVideoBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        ToastUtil.showToast(getActivity(),"该歌曲的视频教学尚未完成哦");
+                    }
+                });
+            }
+            else{
+                setClick();
+            }
         }
 
     }

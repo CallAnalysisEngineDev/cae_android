@@ -5,7 +5,7 @@
     android:id="@+id/dl_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@mipmap/call_bac"
+    android:background="@mipmap/img_call_bac"
     tools:context="com.hz.callanalysisengine.activity.MainActivity">
 
     <ScrollView

@@ -21,6 +21,12 @@ public class VideoActivity extends AppCompatActivity {
         setData();
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        webView.destroy();
+    }
+
     private void setWebConfig() {
         WebSettings settings = webView.getSettings();
         settings.setUseWideViewPort(true);
