@@ -100,7 +100,6 @@ public class CallMessageFragment extends Fragment{
     private void setData() {
         new Thread(){
             public void run(){
-
                 while (true){
                     if (((CallActivity) getActivity()).getMessage()!=null) {
                         break;

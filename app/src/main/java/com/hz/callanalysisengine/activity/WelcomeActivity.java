@@ -43,7 +43,7 @@ public class WelcomeActivity extends AppCompatActivity {
 
     //设置登陆动画
     private void alphaAnim(){
-        Animation alaphanim = new AlphaAnimation(0.2f,1.0f);
+        Animation alaphanim = new AlphaAnimation(0.1f,1.0f);
         // 动画表现时间
         alaphanim.setDuration(2000);
         // 动画结束后是否停留在结束状态

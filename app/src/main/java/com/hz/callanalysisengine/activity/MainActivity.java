@@ -1,5 +1,6 @@
 package com.hz.callanalysisengine.activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Handler;
 import android.os.Message;
@@ -8,6 +9,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -16,6 +18,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 
 import com.hz.callanalysisengine.R;
@@ -30,6 +33,12 @@ import com.hz.callanalysisengine.interfaces.IhotRVItemListener;
 import com.hz.callanalysisengine.util.ActivityUtil;
 import com.hz.callanalysisengine.util.RetrofitUtil;
 import com.hz.callanalysisengine.util.ToastUtil;
+import com.iflytek.autoupdate.IFlytekUpdate;
+import com.iflytek.autoupdate.IFlytekUpdateListener;
+import com.iflytek.autoupdate.UpdateConstants;
+import com.iflytek.autoupdate.UpdateErrorCode;
+import com.iflytek.autoupdate.UpdateInfo;
+import com.iflytek.autoupdate.UpdateType;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,6 +50,7 @@ import retrofit2.Retrofit;
 
 public class MainActivity extends AppCompatActivity {
 
+    private Context mContext;
     private Toolbar mToolbar;
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mDrawerToggle;
@@ -58,6 +68,8 @@ public class MainActivity extends AppCompatActivity {
     private GridView mNewGridView;                      //最近更新的GridView
     private List<MainDataBean.NewestBean> mNewbean;     //最近更新
 
+    private IFlytekUpdate updManager;                   // 三方自动更新
+
     // 设置toolbar菜单点击事件
     private Toolbar.OnMenuItemClickListener onMenuItemClick = new Toolbar.OnMenuItemClickListener() {
         @Override
@@ -71,6 +83,22 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
     };
+
+    // 设置更新回调接口
+    private IFlytekUpdateListener updateListener = new IFlytekUpdateListener() {
+
+        @Override
+        public void onResult(int errorcode, UpdateInfo result) {
+
+            if(errorcode == UpdateErrorCode.OK && result!= null) {
+                if(result.getUpdateType() == UpdateType.NoNeed) {
+                    return;
+                }
+                updManager.showUpdateInfo(MainActivity.this, result);
+            }
+        }
+    };
+
 
     private Handler handler = new Handler(){
         public void handleMessage(Message msg){
@@ -87,14 +115,15 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        mContext = this.getApplicationContext();
         initView();
         getData();
         setToolbar();
         setSideAdapter();
         setItemAdapter();
+        autoUpdate();
+
     }
-
-
 
 
     // 初始化控件
@@ -207,6 +236,22 @@ public class MainActivity extends AppCompatActivity {
         mItemImg.add(R.mipmap.img_test_you);
         mItemImg.add(R.mipmap.img_test_riko);
         MainItemAdapter adapter = new MainItemAdapter(MainActivity.this,mItemData,mItemImg);
+        mItemGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                switch (position) {
+                    case 0:
+                        ActivityUtil.startActivity(MainActivity.this,AllSongActivity.class,false);
+                        break;
+                    case 1:
+                        ToastUtil.showToast(MainActivity.this,"暂未开放此模块");
+                        break;
+                    case 2:
+                        ToastUtil.showToast(MainActivity.this,"暂未开放此模块");
+                        break;
+                }
+            }
+        });
         mItemGridView.setAdapter(adapter);
     }
 
@@ -223,7 +268,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         mHotRecyclerView.setAdapter(adapter);
-        mHotRecyclerView.setLayoutManager(new GridLayoutManager(this,1,GridLayoutManager.HORIZONTAL,false));
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+        mHotRecyclerView.setLayoutManager(linearLayoutManager);
     }
 
     // 设置最新歌曲数据
@@ -239,6 +286,18 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    // 初始化自动更新功能
+    private void autoUpdate(){
+
+        updManager = IFlytekUpdate.getInstance(mContext);
+        updManager.setDebugMode(true);
+        updManager.setParameter(UpdateConstants.EXTRA_WIFIONLY, "true");
+        // 设置通知栏icon，默认使用SDK默认
+        updManager.setParameter(UpdateConstants.EXTRA_NOTI_ICON, "false");
+        updManager.setParameter(UpdateConstants.EXTRA_STYLE, UpdateConstants.UPDATE_UI_DIALOG);
+        updManager.autoUpdate(MainActivity.this, updateListener);
     }
 
 

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@mipmap/img_call_bac"
+
     android:orientation="vertical"
     tools:context="com.hz.callanalysisengine.activity.SearchActivity">
 
@@ -24,10 +24,15 @@
 
     </LinearLayout>
 
-    <ListView
-        android:id="@+id/lv_search"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@mipmap/img_call_bac">
+        <ListView
+            android:id="@+id/lv_search"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        </ListView>
+    </FrameLayout>
 
-    </ListView>
 </LinearLayout>
