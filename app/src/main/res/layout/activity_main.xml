@@ -1,14 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="com.hz.callanalysisengine.activity.MainActivity">
 
-    <include layout="@layout/custom_toolbar_main"/>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/splash_rel"
+        android:visibility="visible"
+        >
 
-    <include layout="@layout/drawlayout_main"/>
+        <ImageView
+            android:id="@+id/img_welcome_bac"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@mipmap/call_welcome"
+            android:scaleType="fitXY"/>
+    </FrameLayout>
 
-</LinearLayout>
+    <LinearLayout
+        android:id="@+id/main_lin"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/main_toolBar"
+            android:background="#40C4FF"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            app:title="Caller"
+            >
+        </android.support.v7.widget.Toolbar>
+
+        <include layout="@layout/drawlayout_main"/>
+    </LinearLayout>
+
+
+
+
+</RelativeLayout>

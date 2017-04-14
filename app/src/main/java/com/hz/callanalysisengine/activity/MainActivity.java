@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Handler;
 import android.os.Message;
+import android.os.SystemClock;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -16,10 +17,15 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
 import android.widget.AdapterView;
+import android.widget.FrameLayout;
 import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 
 import com.hz.callanalysisengine.R;
 import com.hz.callanalysisengine.adapter.HotCallViewAdapter;
@@ -52,6 +58,8 @@ public class MainActivity extends AppCompatActivity {
 
     private Context mContext;
     private Toolbar mToolbar;
+    private FrameLayout mSplashView;
+    private LinearLayout mMainView;
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mDrawerToggle;
 
@@ -107,6 +115,10 @@ public class MainActivity extends AppCompatActivity {
                     setHotAdapter();
                     setNewAdapter();
                     break;
+                case 2:
+                    mMainView.setVisibility(View.VISIBLE);
+                    mSplashView.setVisibility(View.GONE);
+                    break;
             }
         }
     };
@@ -121,6 +133,7 @@ public class MainActivity extends AppCompatActivity {
         setToolbar();
         setSideAdapter();
         setItemAdapter();
+        alphaAnim();
         autoUpdate();
 
     }
@@ -134,6 +147,8 @@ public class MainActivity extends AppCompatActivity {
         mItemGridView = (GridView) findViewById(R.id.gv_main_item);
         mHotRecyclerView = (RecyclerView) findViewById(R.id.rv_main_hot);
         mNewGridView = (GridView) findViewById(R.id.gv_main_new);
+        mSplashView = (FrameLayout) findViewById(R.id.splash_rel);
+        mMainView = (LinearLayout) findViewById(R.id.main_lin);
     }
 
     // 设置toolbar
@@ -300,5 +315,21 @@ public class MainActivity extends AppCompatActivity {
         updManager.autoUpdate(MainActivity.this, updateListener);
     }
 
+    //设置登陆动画
+    private void alphaAnim(){
+        Animation alaphanim = new AlphaAnimation(0.5f,1.0f);
+        // 动画表现时间
+        alaphanim.setDuration(2000);
+        // 动画结束后是否停留在结束状态
+        alaphanim.setFillAfter(true);
+        ImageView img = (ImageView) findViewById(R.id.img_welcome_bac);
+        img.startAnimation(alaphanim);
+        new Thread(){
+            public void run(){
+                SystemClock.sleep(2000);
+                handler.sendEmptyMessage(2);
+            }
+        }.start();
+    }
 
 }

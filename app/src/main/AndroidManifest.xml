@@ -20,12 +20,12 @@
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         <meta-data
             android:name="IFLYTEK_CHANNEL"
-            android:value=""/>
+            android:value="" />
         <meta-data
             android:name="IFLYTEK_APPKEY"
-            android:value="&apos;58e8c6b9&apos;"/>
+            android:value="&apos;58e8c6b9&apos;" />
 
-        <activity android:name=".activity.WelcomeActivity">
+        <activity android:name=".activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -35,12 +35,12 @@
         <activity
             android:name=".activity.SearchActivity"
             android:windowSoftInputMode="adjustPan" />
-        <activity android:name=".activity.MainActivity" />
+
         <activity android:name=".activity.CallActivity" />
         <activity android:name=".activity.VideoActivity" />
         <activity android:name=".activity.MineActivity" />
         <activity android:name=".activity.SettingActivity" />
-        <activity android:name=".activity.AllSongActivity"/>
+        <activity android:name=".activity.AllSongActivity" />
 
         <!-- 三方自动更新界面 -->
         <activity
