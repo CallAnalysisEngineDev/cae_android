@@ -40,15 +40,15 @@ public class HotCallViewAdapter extends RecyclerView.Adapter<HotCallViewHolder>{
     @Override
     public void onBindViewHolder(HotCallViewHolder holder, int position) {
         Picasso.with(mContext)
-                .load(Constant.IMG_URL+mHotList.get(position).getSongCover())
+                .load(Constant.IMG_URL+mHotList.get(position%mHotList.size()).getSongCover())
                 .into(holder.iv_hot_call_img);
-        holder.tv_hot_call_text.setText(mHotList.get(position).getSongName());
+        holder.tv_hot_call_text.setText(mHotList.get(position%mHotList.size()).getSongName());
     }
 
 
     @Override
     public int getItemCount() {
-        return mHotList.size();
+        return Integer.MAX_VALUE;
     }
 
     public void setItemOnClickListener(IhotRVItemListener listener){

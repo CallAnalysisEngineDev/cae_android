@@ -39,6 +39,7 @@ import com.hz.callanalysisengine.interfaces.IhotRVItemListener;
 import com.hz.callanalysisengine.util.ActivityUtil;
 import com.hz.callanalysisengine.util.RetrofitUtil;
 import com.hz.callanalysisengine.util.ToastUtil;
+import com.hz.callanalysisengine.view.AutoPollRecycleView;
 import com.iflytek.autoupdate.IFlytekUpdate;
 import com.iflytek.autoupdate.IFlytekUpdateListener;
 import com.iflytek.autoupdate.UpdateConstants;
@@ -70,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
     private List<String> mItemData;                     //item名称
     private List<Integer> mItemImg;                     //item图标
 
-    private RecyclerView mHotRecyclerView;              //热门歌曲的RecyclerView
+    private AutoPollRecycleView mHotRecyclerView;       //热门歌曲的RecyclerView
     private List<MainDataBean.RedBean> mHotbean;        //热门歌曲
 
     private GridView mNewGridView;                      //最近更新的GridView
@@ -84,8 +85,8 @@ public class MainActivity extends AppCompatActivity {
         public boolean onMenuItemClick(MenuItem menuItem) {
             switch (menuItem.getItemId()) {
                 case R.id.action_search:
-                    Log.v("hz","搜索");
-                    ActivityUtil.startActivity(MainActivity.this,SearchActivity.class,false);
+                    Log.v("hz", "搜索");
+                    ActivityUtil.startActivity(MainActivity.this, SearchActivity.class, false);
                     break;
             }
             return true;
@@ -98,8 +99,8 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onResult(int errorcode, UpdateInfo result) {
 
-            if(errorcode == UpdateErrorCode.OK && result!= null) {
-                if(result.getUpdateType() == UpdateType.NoNeed) {
+            if (errorcode == UpdateErrorCode.OK && result != null) {
+                if (result.getUpdateType() == UpdateType.NoNeed) {
                     return;
                 }
                 updManager.showUpdateInfo(MainActivity.this, result);
@@ -107,11 +108,11 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
-
-    private Handler handler = new Handler(){
-        public void handleMessage(Message msg){
+    // handler消息处理
+    private Handler handler = new Handler() {
+        public void handleMessage(Message msg) {
             switch (msg.what) {
-                case 1 :
+                case 1:
                     setHotAdapter();
                     setNewAdapter();
                     break;
@@ -145,7 +146,7 @@ public class MainActivity extends AppCompatActivity {
         mDrawerLayout = (DrawerLayout) findViewById(R.id.dl_main);
         mSideMenuListview = (ListView) findViewById(R.id.lv_side_menu);
         mItemGridView = (GridView) findViewById(R.id.gv_main_item);
-        mHotRecyclerView = (RecyclerView) findViewById(R.id.rv_main_hot);
+        mHotRecyclerView = (AutoPollRecycleView) findViewById(R.id.rv_main_hot);
         mNewGridView = (GridView) findViewById(R.id.gv_main_new);
         mSplashView = (FrameLayout) findViewById(R.id.splash_rel);
         mMainView = (LinearLayout) findViewById(R.id.main_lin);
@@ -166,6 +167,7 @@ public class MainActivity extends AppCompatActivity {
             public void onDrawerOpened(View drawerView) {
                 super.onDrawerOpened(drawerView);
             }
+
             @Override
             public void onDrawerClosed(View drawerView) {
                 super.onDrawerClosed(drawerView);
@@ -177,8 +179,7 @@ public class MainActivity extends AppCompatActivity {
 
     // 设置menu菜单
     @Override
-    public boolean onCreateOptionsMenu(Menu menu)
-    {
+    public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
@@ -187,25 +188,24 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         return super.onOptionsItemSelected(item);
     }
-    
+
     // 请求网络
-    private void getData(){
-        IMainDataRetrofit retrofit= RetrofitUtil.createRetrofit(Constant.BASE_URL)
+    private void getData() {
+        IMainDataRetrofit retrofit = RetrofitUtil.createRetrofit(Constant.BASE_URL)
                 .create(IMainDataRetrofit.class);
         Call<MainDataBean> call = retrofit.getCallResult("");
         call.enqueue(new Callback<MainDataBean>() {
             @Override
             public void onResponse(Call<MainDataBean> call, Response<MainDataBean> response) {
-                Log.v("hz","请求成功");
+                Log.v("hz", "请求成功");
                 MainDataBean data = response.body();
-                if(data.isSuccessed()) {
-                    Log.v("hz","数据接收成功");
+                if (data.isSuccessed()) {
+                    Log.v("hz", "数据接收成功");
                     mHotbean = data.getRed();
                     mNewbean = data.getNewest();
                     handler.sendEmptyMessage(1);
-                }
-                else{
-                    Log.v("hz","数据接收失败");
+                } else {
+                    Log.v("hz", "数据接收失败");
                     mHotbean = new ArrayList<MainDataBean.RedBean>();
                     mNewbean = new ArrayList<MainDataBean.NewestBean>();
                 }
@@ -213,7 +213,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<MainDataBean> call, Throwable t) {
-                Log.v("hz","请求失败"+t);
+                Log.v("hz", "请求失败" + t);
             }
         });
     }
@@ -223,17 +223,17 @@ public class MainActivity extends AppCompatActivity {
         mSideData = new ArrayList<>();
         mSideData.add("关于我们");
         mSideData.add("设置");
-        SideMenuAdapter adapter = new SideMenuAdapter(MainActivity.this,mSideData);
+        SideMenuAdapter adapter = new SideMenuAdapter(MainActivity.this, mSideData);
         mSideMenuListview.setAdapter(adapter);
         mSideMenuListview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 switch ((int) id) {
-                    case 0 :
-                        ActivityUtil.startActivity(MainActivity.this,MineActivity.class,false);
+                    case 0:
+                        ActivityUtil.startActivity(MainActivity.this, MineActivity.class, false);
                         break;
-                    case 1 :
-                        ActivityUtil.startActivity(MainActivity.this,SettingActivity.class,false);
+                    case 1:
+                        ActivityUtil.startActivity(MainActivity.this, SettingActivity.class, false);
                         break;
                 }
             }
@@ -250,19 +250,19 @@ public class MainActivity extends AppCompatActivity {
         mItemImg.add(R.mipmap.img_test_chika);
         mItemImg.add(R.mipmap.img_test_you);
         mItemImg.add(R.mipmap.img_test_riko);
-        MainItemAdapter adapter = new MainItemAdapter(MainActivity.this,mItemData,mItemImg);
+        MainItemAdapter adapter = new MainItemAdapter(MainActivity.this, mItemData, mItemImg);
         mItemGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 switch (position) {
                     case 0:
-                        ActivityUtil.startActivity(MainActivity.this,AllSongActivity.class,false);
+                        ActivityUtil.startActivity(MainActivity.this, AllSongActivity.class, false);
                         break;
                     case 1:
-                        ToastUtil.showToast(MainActivity.this,"暂未开放此模块");
+                        ToastUtil.showToast(MainActivity.this, "暂未开放此模块");
                         break;
                     case 2:
-                        ToastUtil.showToast(MainActivity.this,"暂未开放此模块");
+                        ToastUtil.showToast(MainActivity.this, "暂未开放此模块");
                         break;
                 }
             }
@@ -272,39 +272,40 @@ public class MainActivity extends AppCompatActivity {
 
     // 设置热门歌曲数据
     private void setHotAdapter() {
-        HotCallViewAdapter adapter = new HotCallViewAdapter(MainActivity.this,mHotbean);
+        HotCallViewAdapter adapter = new HotCallViewAdapter(MainActivity.this, mHotbean);
         adapter.setItemOnClickListener(new IhotRVItemListener() {
             @Override
             public void onItemOnClick(View view, int position) {
-                Intent intent = new Intent(MainActivity.this,CallActivity.class);
-                intent.putExtra("id",mHotbean.get(position).getSongId());
-                intent.putExtra("html",mHotbean.get(position).getSongName());
+                Intent intent = new Intent(MainActivity.this, CallActivity.class);
+                intent.putExtra("id", mHotbean.get(position%mHotbean.size()).getSongId());
+                intent.putExtra("html", mHotbean.get(position%mHotbean.size()).getSongName());
                 startActivity(intent);
             }
         });
+//        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+//        linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+        mHotRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
         mHotRecyclerView.setAdapter(adapter);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-        linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
-        mHotRecyclerView.setLayoutManager(linearLayoutManager);
+        mHotRecyclerView.start();
     }
 
     // 设置最新歌曲数据
     private void setNewAdapter() {
-        NewCallViewAdapter adapter = new NewCallViewAdapter(MainActivity.this,mNewbean);
+        NewCallViewAdapter adapter = new NewCallViewAdapter(MainActivity.this, mNewbean);
         mNewGridView.setAdapter(adapter);
         mNewGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(MainActivity.this,CallActivity.class);
-                intent.putExtra("id",mNewbean.get(position).getSongId());
-                intent.putExtra("html",mNewbean.get(position).getSongName());
+                Intent intent = new Intent(MainActivity.this, CallActivity.class);
+                intent.putExtra("id", mNewbean.get(position).getSongId());
+                intent.putExtra("html", mNewbean.get(position).getSongName());
                 startActivity(intent);
             }
         });
     }
 
     // 初始化自动更新功能
-    private void autoUpdate(){
+    private void autoUpdate() {
 
         updManager = IFlytekUpdate.getInstance(mContext);
         updManager.setDebugMode(true);
@@ -316,16 +317,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //设置登陆动画
-    private void alphaAnim(){
-        Animation alaphanim = new AlphaAnimation(0.5f,1.0f);
+    private void alphaAnim() {
+        Animation alaphanim = new AlphaAnimation(0.5f, 1.0f);
         // 动画表现时间
         alaphanim.setDuration(2000);
         // 动画结束后是否停留在结束状态
         alaphanim.setFillAfter(true);
         ImageView img = (ImageView) findViewById(R.id.img_welcome_bac);
         img.startAnimation(alaphanim);
-        new Thread(){
-            public void run(){
+        new Thread() {
+            public void run() {
                 SystemClock.sleep(2000);
                 handler.sendEmptyMessage(2);
             }
