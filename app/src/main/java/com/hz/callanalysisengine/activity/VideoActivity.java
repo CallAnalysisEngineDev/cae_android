@@ -2,6 +2,7 @@ package com.hz.callanalysisengine.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 
@@ -28,14 +29,32 @@ public class VideoActivity extends AppCompatActivity {
     }
 
     private void setWebConfig() {
-        WebSettings settings = webView.getSettings();
-        settings.setUseWideViewPort(true);
-        settings.setLoadWithOverviewMode(true);
-        settings.setJavaScriptEnabled(true);
+        WebSettings webSettings = webView.getSettings();
+
+        webSettings.setUseWideViewPort(true);
+        webSettings.setLoadWithOverviewMode(true);
+        webSettings.setJavaScriptEnabled(true);
+
+
+        webSettings.setAllowFileAccess(true);
+        webSettings.setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
+        // 开启支持视频
+        webSettings.setPluginState(WebSettings.PluginState.ON);
+        webSettings.setGeolocationEnabled(true);
+        // 开启DOM缓存。
+        webSettings.setDomStorageEnabled(true);
+        webSettings.setDatabaseEnabled(true);
+        webSettings.setDatabasePath(getApplicationContext().getCacheDir()
+                .getAbsolutePath());
+        webSettings.setAppCacheEnabled(true);
+        webSettings.setAppCachePath(getApplicationContext().getCacheDir()
+                .getAbsolutePath());
+        webSettings.setAppCacheMaxSize(Integer.MAX_VALUE);
+        webView.requestFocus();
     }
 
     private void setData() {
+        Log.v("hz",Constant.BILIBILI_URL+getIntent().getStringExtra("video"));
         webView.loadUrl(Constant.BILIBILI_URL+getIntent().getStringExtra("video"));
-
     }
 }

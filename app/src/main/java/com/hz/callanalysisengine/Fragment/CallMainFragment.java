@@ -1,4 +1,4 @@
-package com.hz.callanalysisengine.Fragment;
+package com.hz.callanalysisengine.fragment;
 
 import android.os.Bundle;
 import android.os.Handler;
@@ -24,6 +24,7 @@ import com.hz.callanalysisengine.R;
 public class CallMainFragment extends Fragment {
 
     private ImageView falseView;
+
     private WebView webView;
     private Handler handler = new Handler() {
         public void handleMessage(Message msg) {
@@ -37,7 +38,7 @@ public class CallMainFragment extends Fragment {
 
     private void updateView(CallMessageBean callMessage) {
         if (callMessage.getResult().getCallSource() != null) {
-            String url = Constant.AQOURS_HTML_URL + callMessage.getResult().getCallSource();
+            String url = callMessage.getResult().getCallSource();
             webView.loadUrl(url);
             webView.setVisibility(View.VISIBLE);
         } else {

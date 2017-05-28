@@ -6,13 +6,13 @@ import android.support.v4.view.ViewPager;
 import android.os.Bundle;
 import android.util.Log;
 
-import com.hz.callanalysisengine.Fragment.CallMainFragment;
-import com.hz.callanalysisengine.Fragment.CallMessageFragment;
+import com.hz.callanalysisengine.fragment.CallMainFragment;
+import com.hz.callanalysisengine.fragment.CallMessageFragment;
 import com.hz.callanalysisengine.R;
 
 import com.hz.callanalysisengine.bean.CallMessageBean;
 import com.hz.callanalysisengine.constant.Constant;
-import com.hz.callanalysisengine.interfaces.ICallRetrofit;
+import com.hz.callanalysisengine.interfaces.IGetRetrofit;
 import com.hz.callanalysisengine.util.RetrofitUtil;
 import com.ogaclejapan.smarttablayout.SmartTabLayout;
 import com.ogaclejapan.smarttablayout.utils.v4.FragmentPagerItemAdapter;
@@ -68,7 +68,7 @@ public class CallActivity extends FragmentActivity {
     // 请求数据
     private void setData() {
         Retrofit retrofit = RetrofitUtil.createRetrofit(Constant.BASE_URL);
-        ICallRetrofit callRetrofit = retrofit.create(ICallRetrofit.class);
+        IGetRetrofit callRetrofit = retrofit.create(IGetRetrofit.class);
         Log.v("hz", Constant.BASE_URL + "detail?song.songId=" + getIntent().getStringExtra("id"));
         Call<CallMessageBean> call = callRetrofit.getCallResult("detail?song.songId=" +
                 getIntent().getStringExtra("id"));

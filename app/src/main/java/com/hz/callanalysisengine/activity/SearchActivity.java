@@ -14,7 +14,7 @@ import android.widget.ListView;
 
 import com.hz.callanalysisengine.adapter.SearchViewAdapter;
 import com.hz.callanalysisengine.constant.Constant;
-import com.hz.callanalysisengine.interfaces.ISearchRetrofit;
+import com.hz.callanalysisengine.interfaces.IGetRetrofit;
 import com.hz.callanalysisengine.util.RetrofitUtil;
 import com.hz.callanalysisengine.R;
 import com.hz.callanalysisengine.bean.SearchItemBean;
@@ -121,7 +121,7 @@ public class SearchActivity extends AppCompatActivity {
             // 当搜索按钮点击后调用方法
             public boolean onQueryTextSubmit(String query) {
                 Retrofit retrofit = RetrofitUtil.createRetrofit(Constant.BASE_URL);
-                ISearchRetrofit mRetrofit = retrofit.create(ISearchRetrofit.class);
+                IGetRetrofit mRetrofit = retrofit.create(IGetRetrofit.class);
                 mQuery = query;
                 Call<SearchItemBean> call = mRetrofit.getSearchResult("search?page=1&songName="+query);
 
@@ -162,7 +162,7 @@ public class SearchActivity extends AppCompatActivity {
     // 根据页数多次访问后台
     private void setMoreView(int page){
         Retrofit retrofit = RetrofitUtil.createRetrofit(Constant.BASE_URL);
-        ISearchRetrofit mRetrofit = retrofit.create(ISearchRetrofit.class);
+        IGetRetrofit mRetrofit = retrofit.create(IGetRetrofit.class);
         Call<SearchItemBean> call = mRetrofit.getSearchResult("search?page="+page+"&song.songName="+mQuery);
         call.enqueue(new Callback<SearchItemBean>() {
             @Override

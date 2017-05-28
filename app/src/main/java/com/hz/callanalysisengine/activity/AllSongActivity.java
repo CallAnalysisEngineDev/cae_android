@@ -15,7 +15,7 @@ import com.hz.callanalysisengine.R;
 import com.hz.callanalysisengine.adapter.SearchViewAdapter;
 import com.hz.callanalysisengine.bean.SearchItemBean;
 import com.hz.callanalysisengine.constant.Constant;
-import com.hz.callanalysisengine.interfaces.ISearchRetrofit;
+import com.hz.callanalysisengine.interfaces.IGetRetrofit;
 import com.hz.callanalysisengine.util.RetrofitUtil;
 
 import java.util.List;
@@ -59,7 +59,7 @@ public class AllSongActivity extends AppCompatActivity {
 
     private void setSongData() {
         Retrofit retrofit = RetrofitUtil.createRetrofit(Constant.BASE_URL);
-        ISearchRetrofit mRetrofit = retrofit.create(ISearchRetrofit.class);
+        IGetRetrofit mRetrofit = retrofit.create(IGetRetrofit.class);
         Call<SearchItemBean> call = mRetrofit.getSearchResult("search?page=1&songName=");
         call.enqueue(new Callback<SearchItemBean>() {
             @Override
@@ -122,14 +122,12 @@ public class AllSongActivity extends AppCompatActivity {
 
     private void setMoreAdapter() {
         mAdapter.notifyDataSetChanged();
-//        mAdapter = new SearchViewAdapter(this,mAllSongList);
-//        mSongLv.setAdapter(mAdapter);
     }
 
     // 根据页数多次访问后台
     private void setMoreView(int page) {
         Retrofit retrofit = RetrofitUtil.createRetrofit(Constant.BASE_URL);
-        ISearchRetrofit mRetrofit = retrofit.create(ISearchRetrofit.class);
+        IGetRetrofit mRetrofit = retrofit.create(IGetRetrofit.class);
         Call<SearchItemBean> call = mRetrofit.getSearchResult("search?page=" + page + "&song.songName=");
         call.enqueue(new Callback<SearchItemBean>() {
             @Override

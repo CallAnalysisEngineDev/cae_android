@@ -8,9 +8,8 @@ import android.view.ViewGroup;
 
 import com.hz.callanalysisengine.R;
 import com.hz.callanalysisengine.bean.MainDataBean;
-import com.hz.callanalysisengine.constant.Constant;
 import com.hz.callanalysisengine.holder.HotCallViewHolder;
-import com.hz.callanalysisengine.interfaces.IhotRVItemListener;
+import com.hz.callanalysisengine.interfaces.IHotItemListener;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -23,7 +22,7 @@ public class HotCallViewAdapter extends RecyclerView.Adapter<HotCallViewHolder>{
 
     private Context mContext;
     private List<MainDataBean.RedBean> mHotList;
-    private IhotRVItemListener mListener;
+    private IHotItemListener mListener;
 
     public HotCallViewAdapter(Context context, List<MainDataBean.RedBean> list) {
         mContext = context;
@@ -40,7 +39,7 @@ public class HotCallViewAdapter extends RecyclerView.Adapter<HotCallViewHolder>{
     @Override
     public void onBindViewHolder(HotCallViewHolder holder, int position) {
         Picasso.with(mContext)
-                .load(Constant.IMG_URL+mHotList.get(position%mHotList.size()).getSongCover())
+                .load(mHotList.get(position%mHotList.size()).getSongCover())
                 .into(holder.iv_hot_call_img);
         holder.tv_hot_call_text.setText(mHotList.get(position%mHotList.size()).getSongName());
     }
@@ -51,7 +50,7 @@ public class HotCallViewAdapter extends RecyclerView.Adapter<HotCallViewHolder>{
         return Integer.MAX_VALUE;
     }
 
-    public void setItemOnClickListener(IhotRVItemListener listener){
+    public void setItemOnClickListener(IHotItemListener listener){
         mListener=listener;
     }
 

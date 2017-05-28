@@ -15,7 +15,6 @@ public class SearchViewHolder {
     public ImageView iv_call_img;
     public TextView tv_call_name;
     public TextView tv_call_singer;
-    public TextView tv_call_id;
 
 
     public SearchViewHolder(View itemView) {

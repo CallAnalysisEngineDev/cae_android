@@ -2,4 +2,21 @@
     <string name="app_name">Caller</string>
     <string name="open">open</string>
     <string name="close">close</string>
+
+    <string name="mime">APP作者：灰灰 </string>
+    <string name="mime_qq_mail">我的邮箱：723290367@qq.com</string>
+    <string name="mime_wechat">微博：@渡边家的小灰灰 </string>
+
+    <string name="kuma">call表作者：kuma </string>
+    <string name="kuma_wechat">微博：@kuma_loveliver</string>
+    <string name="kuma_baidu">call表度盘链接：http://pan.baidu.com/s/1eSCyE9G" </string>
+
+    <string name="about">本APP纯属兴趣爱好产物，用于call表的交流与学习，不作商业用途。
+        如果有好的建议和意见，可以在下列的联系方式中联系我们，谢谢。 </string>
+
+
+
+
+
+
 </resources>

@@ -9,9 +9,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
@@ -25,7 +23,6 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
 
 import com.hz.callanalysisengine.R;
 import com.hz.callanalysisengine.adapter.HotCallViewAdapter;
@@ -34,8 +31,8 @@ import com.hz.callanalysisengine.adapter.NewCallViewAdapter;
 import com.hz.callanalysisengine.adapter.SideMenuAdapter;
 import com.hz.callanalysisengine.bean.MainDataBean;
 import com.hz.callanalysisengine.constant.Constant;
-import com.hz.callanalysisengine.interfaces.IMainDataRetrofit;
-import com.hz.callanalysisengine.interfaces.IhotRVItemListener;
+import com.hz.callanalysisengine.interfaces.IGetRetrofit;
+import com.hz.callanalysisengine.interfaces.IHotItemListener;
 import com.hz.callanalysisengine.util.ActivityUtil;
 import com.hz.callanalysisengine.util.RetrofitUtil;
 import com.hz.callanalysisengine.util.ToastUtil;
@@ -53,7 +50,6 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -191,9 +187,9 @@ public class MainActivity extends AppCompatActivity {
 
     // 请求网络
     private void getData() {
-        IMainDataRetrofit retrofit = RetrofitUtil.createRetrofit(Constant.BASE_URL)
-                .create(IMainDataRetrofit.class);
-        Call<MainDataBean> call = retrofit.getCallResult("");
+        IGetRetrofit retrofit = RetrofitUtil.createRetrofit(Constant.BASE_URL)
+                .create(IGetRetrofit.class);
+        Call<MainDataBean> call = retrofit.getMainData("");
         call.enqueue(new Callback<MainDataBean>() {
             @Override
             public void onResponse(Call<MainDataBean> call, Response<MainDataBean> response) {
@@ -273,7 +269,7 @@ public class MainActivity extends AppCompatActivity {
     // 设置热门歌曲数据
     private void setHotAdapter() {
         HotCallViewAdapter adapter = new HotCallViewAdapter(MainActivity.this, mHotbean);
-        adapter.setItemOnClickListener(new IhotRVItemListener() {
+        adapter.setItemOnClickListener(new IHotItemListener() {
             @Override
             public void onItemOnClick(View view, int position) {
                 Intent intent = new Intent(MainActivity.this, CallActivity.class);
@@ -282,8 +278,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-//        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-//        linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         mHotRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
         mHotRecyclerView.setAdapter(adapter);
         mHotRecyclerView.start();

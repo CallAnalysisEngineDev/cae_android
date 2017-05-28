@@ -12,6 +12,7 @@ import android.widget.ListView;
 
 import com.hz.callanalysisengine.R;
 import com.hz.callanalysisengine.adapter.SettingAdapter;
+import com.hz.callanalysisengine.util.DataCleanUtil;
 import com.hz.callanalysisengine.util.ToastUtil;
 import com.iflytek.autoupdate.IFlytekUpdate;
 import com.iflytek.autoupdate.IFlytekUpdateListener;
@@ -79,6 +80,11 @@ public class SettingActivity extends AppCompatActivity {
                         updManager.forceUpdate(SettingActivity.this, updateListener);
                         break;
                     case 2:
+                        DataCleanUtil.cleanInternalCache(SettingActivity.this);
+                        DataCleanUtil.cleanExternalCache(SettingActivity.this);
+                        DataCleanUtil.cleanDatabases(SettingActivity.this);
+                        DataCleanUtil.cleanSharedPreference(SettingActivity.this);
+                        DataCleanUtil.cleanFiles(SettingActivity.this);
                         ToastUtil.showToast(SettingActivity.this, "清除缓存成功");
                         break;
                 }

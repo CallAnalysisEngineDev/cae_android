@@ -1,4 +1,4 @@
-package com.hz.callanalysisengine.Fragment;
+package com.hz.callanalysisengine.fragment;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -7,7 +7,6 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,17 +18,9 @@ import com.hz.callanalysisengine.activity.CallActivity;
 import com.hz.callanalysisengine.activity.VideoActivity;
 import com.hz.callanalysisengine.bean.CallMessageBean;
 import com.hz.callanalysisengine.constant.Constant;
-import com.hz.callanalysisengine.interfaces.ICallRetrofit;
-import com.hz.callanalysisengine.interfaces.IMessageListener;
-import com.hz.callanalysisengine.util.RetrofitUtil;
 import com.hz.callanalysisengine.R;
 import com.hz.callanalysisengine.util.ToastUtil;
 import com.squareup.picasso.Picasso;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
 
 /**
  * Created by kotori on 2017/4/3.
@@ -123,7 +114,7 @@ public class CallMessageFragment extends Fragment{
             saleTime.setText(callMessage.getResult().getSong().getSongSellTime());
             songName.setText(callMessage.getResult().getSong().getSongName());
             Picasso.with(getActivity())
-                    .load(Constant.IMG_URL +callMessage.getResult().getSong().getSongCover())
+                    .load(callMessage.getResult().getSong().getSongCover())
                     .into(callImg);
             htmlUrl = callMessage.getResult().getCallSource();
             videoUrl = callMessage.getResult().getSong().getSongVideo();

@@ -6,7 +6,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.hz.callanalysisengine.R;
-import com.hz.callanalysisengine.interfaces.IhotRVItemListener;
+import com.hz.callanalysisengine.interfaces.IHotItemListener;
 
 /**
  * Created by kotori on 2017/4/6.
@@ -15,9 +15,9 @@ import com.hz.callanalysisengine.interfaces.IhotRVItemListener;
 public class HotCallViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
     public ImageView iv_hot_call_img;
     public TextView tv_hot_call_text;
-    IhotRVItemListener mListener;
+    IHotItemListener mListener;
 
-    public HotCallViewHolder(View itemView,IhotRVItemListener ihotRVItemListener) {
+    public HotCallViewHolder(View itemView,IHotItemListener ihotRVItemListener) {
         super(itemView);
         iv_hot_call_img = (ImageView) itemView.findViewById(R.id.iv_call_view_img);
         tv_hot_call_text = (TextView) itemView.findViewById(R.id.tv_call_view_text);
