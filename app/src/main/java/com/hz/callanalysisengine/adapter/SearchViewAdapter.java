@@ -58,7 +58,7 @@ public class SearchViewAdapter extends BaseAdapter {
         }
 
         Picasso.with(mContext)
-                .load(Constant.IMG_URL + mList.get(position).getSongCover())
+                .load(mList.get(position).getSongCover())
                 .into(viewHolder.iv_call_img);
         viewHolder.tv_call_name.setText(mList.get(position).getSongName());
         viewHolder.tv_call_singer.setText(mList.get(position).getSongOwner());

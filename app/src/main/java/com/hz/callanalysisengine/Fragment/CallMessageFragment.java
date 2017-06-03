@@ -123,7 +123,7 @@ public class CallMessageFragment extends Fragment{
             saleTime.setText(callMessage.getResult().getSong().getSongSellTime());
             songName.setText(callMessage.getResult().getSong().getSongName());
             Picasso.with(getActivity())
-                    .load(Constant.IMG_URL +callMessage.getResult().getSong().getSongCover())
+                    .load(callMessage.getResult().getSong().getSongCover())
                     .into(callImg);
             htmlUrl = callMessage.getResult().getCallSource();
             videoUrl = callMessage.getResult().getSong().getSongVideo();

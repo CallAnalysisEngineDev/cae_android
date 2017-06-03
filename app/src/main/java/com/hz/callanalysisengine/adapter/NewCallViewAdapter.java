@@ -56,7 +56,7 @@ public class NewCallViewAdapter extends BaseAdapter{
             holder = (NewCallViewHolder) convertView.getTag();
         }
         Picasso.with(mContext)
-                .load(Constant.IMG_URL+mNewList.get(position).getSongCover())
+                .load(mNewList.get(position).getSongCover())
                 .into(holder.iv_hot_call_img);
         holder.tv_hot_call_text.setText(mNewList.get(position).getSongName());
         return convertView;

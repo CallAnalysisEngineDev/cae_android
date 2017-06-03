@@ -37,7 +37,7 @@ public class CallMainFragment extends Fragment {
 
     private void updateView(CallMessageBean callMessage) {
         if (callMessage.getResult().getCallSource() != null) {
-            String url = Constant.AQOURS_HTML_URL + callMessage.getResult().getCallSource();
+            String url = callMessage.getResult().getCallSource();
             webView.loadUrl(url);
             webView.setVisibility(View.VISIBLE);
         } else {

@@ -193,7 +193,7 @@ public class MainActivity extends AppCompatActivity {
     private void getData() {
         IMainDataRetrofit retrofit = RetrofitUtil.createRetrofit(Constant.BASE_URL)
                 .create(IMainDataRetrofit.class);
-        Call<MainDataBean> call = retrofit.getCallResult("");
+        Call<MainDataBean> call = retrofit.getCallResult("index");
         call.enqueue(new Callback<MainDataBean>() {
             @Override
             public void onResponse(Call<MainDataBean> call, Response<MainDataBean> response) {
