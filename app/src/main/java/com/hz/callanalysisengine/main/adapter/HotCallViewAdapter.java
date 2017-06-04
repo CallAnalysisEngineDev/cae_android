@@ -1,4 +1,4 @@
-package com.hz.callanalysisengine.adapter;
+package com.hz.callanalysisengine.main.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;

@@ -1,4 +1,4 @@
-package com.hz.callanalysisengine.adapter;
+package com.hz.callanalysisengine.main.adapter;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;

@@ -1,4 +1,4 @@
-package com.hz.callanalysisengine.fragment;
+package com.hz.callanalysisengine.main.fragment;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -14,10 +14,9 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.hz.callanalysisengine.activity.CallActivity;
-import com.hz.callanalysisengine.activity.VideoActivity;
+import com.hz.callanalysisengine.main.activity.CallActivity;
+import com.hz.callanalysisengine.main.activity.VideoActivity;
 import com.hz.callanalysisengine.bean.CallMessageBean;
-import com.hz.callanalysisengine.constant.Constant;
 import com.hz.callanalysisengine.R;
 import com.hz.callanalysisengine.util.ToastUtil;
 import com.squareup.picasso.Picasso;

@@ -1,17 +1,17 @@
-package com.hz.callanalysisengine.activity;
+package com.hz.callanalysisengine.main.activity;
 
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.hz.callanalysisengine.R;
-import com.hz.callanalysisengine.adapter.SettingAdapter;
+import com.hz.callanalysisengine.main.adapter.SettingAdapter;
+import com.hz.callanalysisengine.main.base.BaseActivity;
 import com.hz.callanalysisengine.util.DataCleanUtil;
 import com.hz.callanalysisengine.util.ToastUtil;
 import com.iflytek.autoupdate.IFlytekUpdate;
@@ -24,7 +24,7 @@ import com.iflytek.autoupdate.UpdateType;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SettingActivity extends AppCompatActivity {
+public class SettingActivity extends BaseActivity {
 
     private Context mContext;
     private IFlytekUpdate updManager;   // 三方自动更新
@@ -36,12 +36,16 @@ public class SettingActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_setting);
         mContext = this.getApplicationContext();
         initView();
         initData();
         setAdapter();
         autoUpdate();
+    }
+
+    @Override
+    protected int getContentView() {
+        return R.layout.activity_setting;
     }
 
     private void initView() {

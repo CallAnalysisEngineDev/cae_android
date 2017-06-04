@@ -1,4 +1,4 @@
-package com.hz.callanalysisengine.activity;
+package com.hz.callanalysisengine.main.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;

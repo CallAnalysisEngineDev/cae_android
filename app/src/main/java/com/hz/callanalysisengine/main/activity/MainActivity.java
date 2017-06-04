@@ -1,4 +1,4 @@
-package com.hz.callanalysisengine.activity;
+package com.hz.callanalysisengine.main.activity;
 
 import android.content.Context;
 import android.content.Intent;
@@ -25,10 +25,10 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 
 import com.hz.callanalysisengine.R;
-import com.hz.callanalysisengine.adapter.HotCallViewAdapter;
-import com.hz.callanalysisengine.adapter.MainItemAdapter;
-import com.hz.callanalysisengine.adapter.NewCallViewAdapter;
-import com.hz.callanalysisengine.adapter.SideMenuAdapter;
+import com.hz.callanalysisengine.main.adapter.HotCallViewAdapter;
+import com.hz.callanalysisengine.main.adapter.MainItemAdapter;
+import com.hz.callanalysisengine.main.adapter.NewCallViewAdapter;
+import com.hz.callanalysisengine.main.adapter.SideMenuAdapter;
 import com.hz.callanalysisengine.bean.MainDataBean;
 import com.hz.callanalysisengine.constant.Constant;
 import com.hz.callanalysisengine.interfaces.IGetRetrofit;
@@ -93,9 +93,9 @@ public class MainActivity extends AppCompatActivity {
     private IFlytekUpdateListener updateListener = new IFlytekUpdateListener() {
 
         @Override
-        public void onResult(int errorcode, UpdateInfo result) {
+        public void onResult(int errorCode, UpdateInfo result) {
 
-            if (errorcode == UpdateErrorCode.OK && result != null) {
+            if (errorCode == UpdateErrorCode.OK && result != null) {
                 if (result.getUpdateType() == UpdateType.NoNeed) {
                     return;
                 }
@@ -134,7 +134,6 @@ public class MainActivity extends AppCompatActivity {
         autoUpdate();
 
     }
-
 
     // 初始化控件
     private void initView() {
@@ -180,16 +179,13 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        return super.onOptionsItemSelected(item);
-    }
-
     // 请求网络
     private void getData() {
+
         IGetRetrofit retrofit = RetrofitUtil.createRetrofit(Constant.BASE_URL)
                 .create(IGetRetrofit.class);
-        Call<MainDataBean> call = retrofit.getMainData("");
+        Call<MainDataBean> call = retrofit.getMainData("index");
+
         call.enqueue(new Callback<MainDataBean>() {
             @Override
             public void onResponse(Call<MainDataBean> call, Response<MainDataBean> response) {
@@ -217,8 +213,9 @@ public class MainActivity extends AppCompatActivity {
     // 设置侧栏数据
     private void setSideAdapter() {
         mSideData = new ArrayList<>();
-        mSideData.add("关于我们");
         mSideData.add("设置");
+        mSideData.add("关于我们");
+        mSideData.add("用户反馈");
         SideMenuAdapter adapter = new SideMenuAdapter(MainActivity.this, mSideData);
         mSideMenuListview.setAdapter(adapter);
         mSideMenuListview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -226,10 +223,13 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 switch ((int) id) {
                     case 0:
-                        ActivityUtil.startActivity(MainActivity.this, MineActivity.class, false);
+                        ActivityUtil.startActivity(MainActivity.this, SettingActivity.class, false);
                         break;
                     case 1:
-                        ActivityUtil.startActivity(MainActivity.this, SettingActivity.class, false);
+                        ActivityUtil.startActivity(MainActivity.this, MineActivity.class, false);
+                        break;
+                    case 2:
+                        ActivityUtil.startActivity(MainActivity.this, FeedBackActivity.class, false);
                         break;
                 }
             }
@@ -310,18 +310,18 @@ public class MainActivity extends AppCompatActivity {
         updManager.autoUpdate(MainActivity.this, updateListener);
     }
 
-    //设置登陆动画
+    // 设置登陆动画
     private void alphaAnim() {
-        Animation alaphanim = new AlphaAnimation(0.5f, 1.0f);
+        Animation alaphAnim = new AlphaAnimation(0.5f, 1.0f);
         // 动画表现时间
-        alaphanim.setDuration(2000);
+        alaphAnim.setDuration(3500);
         // 动画结束后是否停留在结束状态
-        alaphanim.setFillAfter(true);
+        alaphAnim.setFillAfter(true);
         ImageView img = (ImageView) findViewById(R.id.img_welcome_bac);
-        img.startAnimation(alaphanim);
+        img.startAnimation(alaphAnim);
         new Thread() {
             public void run() {
-                SystemClock.sleep(2000);
+                SystemClock.sleep(3500);
                 handler.sendEmptyMessage(2);
             }
         }.start();

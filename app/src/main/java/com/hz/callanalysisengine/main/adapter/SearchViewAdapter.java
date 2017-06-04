@@ -1,4 +1,4 @@
-package com.hz.callanalysisengine.adapter;
+package com.hz.callanalysisengine.main.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -6,7 +6,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
-import com.hz.callanalysisengine.constant.Constant;
 import com.hz.callanalysisengine.R;
 import com.hz.callanalysisengine.bean.SearchItemBean;
 import com.hz.callanalysisengine.holder.SearchViewHolder;

@@ -1,4 +1,4 @@
-package com.hz.callanalysisengine.adapter;
+package com.hz.callanalysisengine.main.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -10,7 +10,6 @@ import android.widget.TextView;
 
 import com.hz.callanalysisengine.R;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**

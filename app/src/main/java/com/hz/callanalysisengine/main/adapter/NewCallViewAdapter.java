@@ -1,4 +1,4 @@
-package com.hz.callanalysisengine.adapter;
+package com.hz.callanalysisengine.main.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -8,8 +8,6 @@ import android.widget.BaseAdapter;
 
 import com.hz.callanalysisengine.R;
 import com.hz.callanalysisengine.bean.MainDataBean;
-import com.hz.callanalysisengine.constant.Constant;
-import com.hz.callanalysisengine.holder.HotCallViewHolder;
 import com.hz.callanalysisengine.holder.NewCallViewHolder;
 import com.squareup.picasso.Picasso;
 

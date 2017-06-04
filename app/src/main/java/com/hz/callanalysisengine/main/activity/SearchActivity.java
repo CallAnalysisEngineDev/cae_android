@@ -1,4 +1,4 @@
-package com.hz.callanalysisengine.activity;
+package com.hz.callanalysisengine.main.activity;
 
 import android.content.Intent;
 import android.os.Handler;
@@ -12,7 +12,7 @@ import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-import com.hz.callanalysisengine.adapter.SearchViewAdapter;
+import com.hz.callanalysisengine.main.adapter.SearchViewAdapter;
 import com.hz.callanalysisengine.constant.Constant;
 import com.hz.callanalysisengine.interfaces.IGetRetrofit;
 import com.hz.callanalysisengine.util.RetrofitUtil;

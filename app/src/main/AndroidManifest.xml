@@ -25,7 +25,7 @@
             android:name="IFLYTEK_APPKEY"
             android:value="&apos;58e8c6b9&apos;" />
 
-        <activity android:name=".activity.MainActivity">
+        <activity android:name=".main.activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -33,14 +33,13 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.SearchActivity"
+            android:name=".main.activity.SearchActivity"
             android:windowSoftInputMode="adjustPan" />
-
-        <activity android:name=".activity.CallActivity" />
-        <activity android:name=".activity.VideoActivity" />
-        <activity android:name=".activity.MineActivity" />
-        <activity android:name=".activity.SettingActivity" />
-        <activity android:name=".activity.AllSongActivity" />
+        <activity android:name=".main.activity.CallActivity" />
+        <activity android:name=".main.activity.VideoActivity" />
+        <activity android:name=".main.activity.MineActivity" />
+        <activity android:name=".main.activity.SettingActivity" />
+        <activity android:name=".main.activity.AllSongActivity" />
 
         <!-- 三方自动更新界面 -->
         <activity
@@ -57,6 +56,7 @@
             android:enabled="true"
             android:process=":IFlytekDownloadService" />
 
+        <activity android:name=".main.activity.FeedBackActivity"></activity>
     </application>
 
 </manifest>

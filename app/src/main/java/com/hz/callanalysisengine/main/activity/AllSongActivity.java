@@ -1,4 +1,4 @@
-package com.hz.callanalysisengine.activity;
+package com.hz.callanalysisengine.main.activity;
 
 import android.content.Intent;
 import android.os.Handler;
@@ -12,10 +12,11 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.hz.callanalysisengine.R;
-import com.hz.callanalysisengine.adapter.SearchViewAdapter;
+import com.hz.callanalysisengine.main.adapter.SearchViewAdapter;
 import com.hz.callanalysisengine.bean.SearchItemBean;
 import com.hz.callanalysisengine.constant.Constant;
 import com.hz.callanalysisengine.interfaces.IGetRetrofit;
+import com.hz.callanalysisengine.main.base.BaseActivity;
 import com.hz.callanalysisengine.util.RetrofitUtil;
 
 import java.util.List;
@@ -25,7 +26,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
-public class AllSongActivity extends AppCompatActivity {
+public class AllSongActivity extends BaseActivity {
 
     private ListView mSongLv;
     private SearchViewAdapter mAdapter;
@@ -48,9 +49,13 @@ public class AllSongActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_all_song);
         initView();
         setSongData();
+    }
+
+    @Override
+    protected int getContentView() {
+        return R.layout.activity_all_song;
     }
 
     private void initView() {

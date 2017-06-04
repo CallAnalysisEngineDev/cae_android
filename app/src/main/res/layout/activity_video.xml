@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context="com.hz.callanalysisengine.activity.VideoActivity">
+    tools:context=".main.activity.VideoActivity">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/main_toolBar"

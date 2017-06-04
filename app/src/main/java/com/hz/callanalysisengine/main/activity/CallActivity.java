@@ -1,13 +1,16 @@
-package com.hz.callanalysisengine.activity;
+package com.hz.callanalysisengine.main.activity;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.View;
 
-import com.hz.callanalysisengine.fragment.CallMainFragment;
-import com.hz.callanalysisengine.fragment.CallMessageFragment;
+import com.hz.callanalysisengine.main.fragment.CallMainFragment;
+import com.hz.callanalysisengine.main.fragment.CallMessageFragment;
 import com.hz.callanalysisengine.R;
 
 import com.hz.callanalysisengine.bean.CallMessageBean;
@@ -26,10 +29,11 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
-public class CallActivity extends FragmentActivity {
+public class CallActivity extends AppCompatActivity {
 
     private ViewPager mViewPager;
     private CallMessageBean mCallMessageBean;
+    private Toolbar mToolBar;
 
     private List<Fragment> list = new ArrayList<>();
 
@@ -38,14 +42,31 @@ public class CallActivity extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_call);
         initView();
+        setToolbar();
         initPager();
         setData();
     }
 
 
+
+
     // 初始化控件
     private void initView() {
         mViewPager = (ViewPager) findViewById(R.id.vp_call);
+    }
+
+    // 设置toolbar
+    private void setToolbar() {
+        mToolBar = (Toolbar) findViewById(R.id.main_toolBar);
+        setSupportActionBar(mToolBar);
+        // 添加返回键
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        mToolBar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
     // 设置fragment界面

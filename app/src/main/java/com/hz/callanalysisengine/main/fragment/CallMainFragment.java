@@ -1,4 +1,4 @@
-package com.hz.callanalysisengine.fragment;
+package com.hz.callanalysisengine.main.fragment;
 
 import android.os.Bundle;
 import android.os.Handler;
@@ -12,9 +12,8 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.ImageView;
 
-import com.hz.callanalysisengine.activity.CallActivity;
+import com.hz.callanalysisengine.main.activity.CallActivity;
 import com.hz.callanalysisengine.bean.CallMessageBean;
-import com.hz.callanalysisengine.constant.Constant;
 import com.hz.callanalysisengine.R;
 
 /**
