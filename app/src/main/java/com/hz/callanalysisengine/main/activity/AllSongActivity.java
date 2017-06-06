@@ -63,7 +63,7 @@ public class AllSongActivity extends BaseActivity {
     }
 
     private void setSongData() {
-        Retrofit retrofit = RetrofitUtil.createRetrofit(Constant.BASE_URL);
+        Retrofit retrofit = RetrofitUtil.createRetrofit(Constant.CALL_URL);
         IGetRetrofit mRetrofit = retrofit.create(IGetRetrofit.class);
         Call<SearchItemBean> call = mRetrofit.getSearchResult("search?page=1&songName=");
         call.enqueue(new Callback<SearchItemBean>() {
@@ -131,7 +131,7 @@ public class AllSongActivity extends BaseActivity {
 
     // 根据页数多次访问后台
     private void setMoreView(int page) {
-        Retrofit retrofit = RetrofitUtil.createRetrofit(Constant.BASE_URL);
+        Retrofit retrofit = RetrofitUtil.createRetrofit(Constant.CALL_URL);
         IGetRetrofit mRetrofit = retrofit.create(IGetRetrofit.class);
         Call<SearchItemBean> call = mRetrofit.getSearchResult("search?page=" + page + "&song.songName=");
         call.enqueue(new Callback<SearchItemBean>() {

@@ -31,17 +31,33 @@
         android:layout_height="match_parent">
 
         <EditText
+            android:id="@+id/feedback_title_edt"
             android:layout_width="match_parent"
-            android:layout_height="300dp"
+            android:layout_height="50dp"
+            android:hint="@string/feedback_title"
             android:gravity="start"
             android:layout_marginTop="10dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginBottom="10dp"
+            android:maxEms="20"
+            />
+
+        <EditText
+            android:id="@+id/feedback_detail_edt"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:hint="@string/feedback_detail"
+            android:gravity="start"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
+            android:maxEms="150"
             />
 
         <Button
-            android:id="@+id/access_edit_post_btn"
+            android:id="@+id/feedback_post_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"

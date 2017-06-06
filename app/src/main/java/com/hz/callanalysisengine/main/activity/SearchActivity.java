@@ -120,7 +120,7 @@ public class SearchActivity extends AppCompatActivity {
             @Override
             // 当搜索按钮点击后调用方法
             public boolean onQueryTextSubmit(String query) {
-                Retrofit retrofit = RetrofitUtil.createRetrofit(Constant.BASE_URL);
+                Retrofit retrofit = RetrofitUtil.createRetrofit(Constant.CALL_URL);
                 IGetRetrofit mRetrofit = retrofit.create(IGetRetrofit.class);
                 mQuery = query;
                 Call<SearchItemBean> call = mRetrofit.getSearchResult("search?page=1&songName="+query);
@@ -161,7 +161,7 @@ public class SearchActivity extends AppCompatActivity {
 
     // 根据页数多次访问后台
     private void setMoreView(int page){
-        Retrofit retrofit = RetrofitUtil.createRetrofit(Constant.BASE_URL);
+        Retrofit retrofit = RetrofitUtil.createRetrofit(Constant.CALL_URL);
         IGetRetrofit mRetrofit = retrofit.create(IGetRetrofit.class);
         Call<SearchItemBean> call = mRetrofit.getSearchResult("search?page="+page+"&song.songName="+mQuery);
         call.enqueue(new Callback<SearchItemBean>() {

@@ -10,7 +10,7 @@ import retrofit2.http.Url;
 
 /**
  * Created by kotori on 2017/4/3.
- * 请求call表详情的接口
+ * get请求的接口
  */
 public interface IGetRetrofit {
 

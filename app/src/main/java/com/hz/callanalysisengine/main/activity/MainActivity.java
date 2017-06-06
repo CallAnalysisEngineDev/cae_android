@@ -182,7 +182,7 @@ public class MainActivity extends AppCompatActivity {
     // 请求网络
     private void getData() {
 
-        IGetRetrofit retrofit = RetrofitUtil.createRetrofit(Constant.BASE_URL)
+        IGetRetrofit retrofit = RetrofitUtil.createRetrofit(Constant.CALL_URL)
                 .create(IGetRetrofit.class);
         Call<MainDataBean> call = retrofit.getMainData("index");
 

@@ -11,8 +11,11 @@
     <string name="kuma_wechat">微博：@kuma_loveliver</string>
     <string name="kuma_baidu">call表度盘链接：http://pan.baidu.com/s/1eSCyE9G" </string>
 
-    <string name="about">本APP纯属兴趣爱好产物，用于call表的交流与学习，不作商业用途。
-        如果有好的建议和意见，可以在下列的联系方式中联系我们，谢谢。 </string>
+    <string name="about">    本APP纯属兴趣爱好产物，用于call表的交流与学习，不作商业用途。
+        如果有好的建议和意见，可以在下列的联系方式中联系我们，谢谢。</string>
+
+    <string name="feedback_title">"标题(20字以内)"</string>
+    <string name="feedback_detail">"内容(150字以内)" </string>
 
 
 </resources>

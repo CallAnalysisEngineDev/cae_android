@@ -88,9 +88,9 @@ public class CallActivity extends AppCompatActivity {
 
     // 请求数据
     private void setData() {
-        Retrofit retrofit = RetrofitUtil.createRetrofit(Constant.BASE_URL);
+        Retrofit retrofit = RetrofitUtil.createRetrofit(Constant.CALL_URL);
         IGetRetrofit callRetrofit = retrofit.create(IGetRetrofit.class);
-        Log.v("hz", Constant.BASE_URL + "detail?song.songId=" + getIntent().getStringExtra("id"));
+        Log.v("hz", Constant.CALL_URL + "detail?song.songId=" + getIntent().getStringExtra("id"));
         Call<CallMessageBean> call = callRetrofit.getCallResult("detail?song.songId=" +
                 getIntent().getStringExtra("id"));
         call.enqueue(new Callback<CallMessageBean>() {
