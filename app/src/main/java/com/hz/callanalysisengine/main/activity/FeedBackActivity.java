@@ -17,6 +17,9 @@ import com.hz.callanalysisengine.util.ActivityUtil;
 import com.hz.callanalysisengine.util.RetrofitUtil;
 import com.hz.callanalysisengine.util.ToastUtil;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -48,25 +51,24 @@ public class FeedBackActivity extends BaseActivity {
     }
 
     // 填充反馈数据
-    private FeedBackBean getData() {
-        FeedBackBean bean = new FeedBackBean();
-        bean.setType("1");
-        bean.set_$MailTitle64(mTitleEdt.getText().toString());
-        bean.set_$MailContent269(mDetailEdt.getText().toString());
-        return bean;
+    private Map getData() {
+
+        // 通过表单，把需要上传的反馈信息放入Map提交
+        Map<String,Object> map = new HashMap<>();
+        map.put("type",1);
+        map.put("mail.title",mTitleEdt.getText().toString());
+        map.put("mail.content",mDetailEdt.getText().toString());
+        return map;
     }
 
     // post请求
-    private void post(FeedBackBean bean) {
-
-        // 通过Gson将Bean转化为Json字符串形式
-        Gson gson=new Gson();
-        String route= gson.toJson(bean);
+    private void post(Map<String,Object> map) {
 
         Retrofit retrofit = RetrofitUtil.createRetrofit(Constant.BASE_URL);
         IPostRetrofit postRetrofit = retrofit.create(IPostRetrofit.class);
-        RequestBody body= RequestBody.create(okhttp3.MediaType.parse("application/json; charset=utf-8"),route);
-        Call<SuccessBean> call = postRetrofit.messagePost("user/advice",body);
+
+//        RequestBody body= RequestBody.create(okhttp3.MediaType.parse("application/json; charset=utf-8"),route);
+        Call<SuccessBean> call = postRetrofit.messagePost("user/advice",map);
         call.enqueue(new Callback<SuccessBean>() {
             @Override
             public void onResponse(Call<SuccessBean> call, Response<SuccessBean> response) {
