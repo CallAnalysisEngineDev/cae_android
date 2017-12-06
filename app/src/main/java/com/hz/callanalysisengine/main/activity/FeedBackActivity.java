@@ -1,5 +1,6 @@
 package com.hz.callanalysisengine.main.activity;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -8,9 +9,11 @@ import android.widget.EditText;
 
 import com.google.gson.Gson;
 import com.hz.callanalysisengine.R;
+import com.hz.callanalysisengine.bean.CallMessageBean;
 import com.hz.callanalysisengine.bean.FeedBackBean;
 import com.hz.callanalysisengine.bean.SuccessBean;
 import com.hz.callanalysisengine.constant.Constant;
+import com.hz.callanalysisengine.interfaces.IGetRetrofit;
 import com.hz.callanalysisengine.interfaces.IPostRetrofit;
 import com.hz.callanalysisengine.main.base.BaseActivity;
 import com.hz.callanalysisengine.util.ActivityUtil;
@@ -58,26 +61,31 @@ public class FeedBackActivity extends BaseActivity {
         map.put("type",1);
         map.put("mail.title",mTitleEdt.getText().toString());
         map.put("mail.content",mDetailEdt.getText().toString());
+
         return map;
     }
 
-    // post请求
+
+
+    // 上传邮件内容
     private void post(Map<String,Object> map) {
 
         Retrofit retrofit = RetrofitUtil.createRetrofit(Constant.BASE_URL);
         IPostRetrofit postRetrofit = retrofit.create(IPostRetrofit.class);
 
-//        RequestBody body= RequestBody.create(okhttp3.MediaType.parse("application/json; charset=utf-8"),route);
         Call<SuccessBean> call = postRetrofit.messagePost("user/advice",map);
         call.enqueue(new Callback<SuccessBean>() {
             @Override
             public void onResponse(Call<SuccessBean> call, Response<SuccessBean> response) {
-                Log.v("hz","请求成功"+response.body().isSuccessed());
-                if(response.body().isSuccessed()) {
-                    ToastUtil.showToast(FeedBackActivity.this,"发送成功");
-                }
-                else{
-                    ToastUtil.showToast(FeedBackActivity.this,"发送失败");
+                if (response.body()!=null){
+                    Log.v("hz","请求成功"+response.body().isSuccessed());
+                    if(response.body().isSuccessed()) {
+                        ToastUtil.showToast(FeedBackActivity.this,"发送成功");
+                    }
+                    else{
+                        Log.v("hz",response.body().getErrInfo());
+                        ToastUtil.showToast(FeedBackActivity.this,"发送失败");
+                    }
                 }
             }
 
@@ -93,6 +101,8 @@ public class FeedBackActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 post(getData());
+                mPostBtn.setBackgroundColor(Color.GRAY);
+                mPostBtn.setClickable(false);
             }
         });
     }

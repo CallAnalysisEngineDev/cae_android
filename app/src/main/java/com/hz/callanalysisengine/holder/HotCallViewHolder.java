@@ -17,7 +17,7 @@ public class HotCallViewHolder extends RecyclerView.ViewHolder implements View.O
     public TextView tv_hot_call_text;
     IHotItemListener mListener;
 
-    public HotCallViewHolder(View itemView,IHotItemListener ihotRVItemListener) {
+    public HotCallViewHolder(View itemView, IHotItemListener ihotRVItemListener) {
         super(itemView);
         iv_hot_call_img = (ImageView) itemView.findViewById(R.id.iv_call_view_img);
         tv_hot_call_text = (TextView) itemView.findViewById(R.id.tv_call_view_text);

@@ -11,6 +11,8 @@ public class SuccessBean {
      */
 
     private boolean successed;
+    private String token;
+    private String errInfo;
 
     public boolean isSuccessed() {
         return successed;
@@ -18,5 +20,21 @@ public class SuccessBean {
 
     public void setSuccessed(boolean successed) {
         this.successed = successed;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
+
+    public String getErrInfo() {
+        return errInfo;
+    }
+
+    public void setErrInfo(String errInfo) {
+        this.errInfo = errInfo;
     }
 }

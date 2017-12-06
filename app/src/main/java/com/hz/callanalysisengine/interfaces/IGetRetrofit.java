@@ -3,6 +3,7 @@ package com.hz.callanalysisengine.interfaces;
 import com.hz.callanalysisengine.bean.CallMessageBean;
 import com.hz.callanalysisengine.bean.MainDataBean;
 import com.hz.callanalysisengine.bean.SearchItemBean;
+import com.hz.callanalysisengine.bean.SuccessBean;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
@@ -23,4 +24,8 @@ public interface IGetRetrofit {
     // 获取搜索结果
     @GET()
     Call<SearchItemBean> getSearchResult(@Url() String ip);
+    // 获取Token
+    @GET()
+    Call<SuccessBean> getToken(@Url() String ip);
+
 }

@@ -18,6 +18,7 @@ import retrofit2.http.Url;
  * post请求的接口
  */
 public interface IPostRetrofit {
+
     @Headers({"Content-Type: application/x-www-form-urlencoded",
             "Accept: application/json"})     //需要添加头
 
